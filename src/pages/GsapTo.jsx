@@ -1,4 +1,5 @@
 import { useGSAP } from "@gsap/react";
+import gsap from "gsap";
 
 const GsapTo = () => {
   useGSAP(()=>{
@@ -10,7 +11,8 @@ const GsapTo = () => {
       yoyo: true,   // Reverse the animation
       rotation: 360, // Rotate the element 360 degrees
       duration: 2,  // Duration of the animation
-      ease: "elastic" // Easing function
+      ease: "elastic", // Easing function
+
     })
   }, []);
 
