@@ -1,5 +1,48 @@
+import { useGSAP } from "@gsap/react";
+import gsap from "gsap";
 const GsapTimeline = () => {
-  // TODO: Implement the gsap timeline
+/*
+The gsap.timeline() method is used to create a timeline instance that can be used to manage multiple animations.
+
+- The gsap.timeline() method is similar to the gsap.to(), gsap.from(), and gsap.fromTo() methods
+- while the gsap.to(), gsap.from(), and gsap.fromTo() methods are used to animate elements from their current state to a new state, from a new state to their current state, and from a new state to a new state. 
+- But gsap.timeline() method is used to create a timeline instance that can be used to manage multiple animations intead of one as in the case of gsap.to(), gsap.from(), and gsap.fromTo() methods. 
+*/
+
+const timeline = gsap.timeline({
+  repeat:-1,
+  repeatDelay:1,
+  yoyo:true
+})
+
+useGSAP(()=>{
+  //timeline.to( target, {to}, position)
+  timeline.to("#yellow-box", {
+    x: 250,
+    rotation: 360,
+    borderRadius: "100%",
+    duration: 2,
+    ease: "back.inOut",
+  })
+  
+  timeline.to("#yellow-box", {
+    y:250,
+    scale:2,
+    rotation: 360,
+    borderRadius: "100%",
+    duration: 2,
+    ease: "back.inOut",
+  })
+
+  timeline.to("#yellow-box", {
+    x: 500,
+    scale:1,
+    rotation: 360,
+    borderRadius: "8px",
+    duration: 2,
+    ease: "back.inOut",
+  })
+} , []);
 
   return (
     <main>
@@ -35,7 +78,13 @@ const GsapTimeline = () => {
       </p>
 
       <div className="mt-20 space-y-10">
-        <button onClick={() => {}}>Play/Pause</button>
+        <button onClick={() => {
+          if(timeline.paused()){
+            timeline.play();
+          }else{
+            timeline.pause();
+          }
+        }}>Play/Pause</button>
 
         <div id="yellow-box" className="w-20 h-20 bg-yellow-500 rounded-lg" />
       </div>
